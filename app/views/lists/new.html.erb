@@ -1,0 +1,7 @@
+<h1>New watchlist</h1>
+<%= simple_form_for [@list] do |f| %>
+  <%= f.input :name %>
+  <%= f.button :submit, class: "btn btn-primary" %>
+<% end %>
+
+<p><%= link_to "Overview", lists_path %></p>

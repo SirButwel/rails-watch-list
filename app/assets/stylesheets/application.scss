@@ -10,3 +10,21 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+.poster {
+  height: 200;
+  width: 100;
+  border: 0px, solid, black;
+}
+
+.banner {
+  background-color: black;
+  border: 0px solid black;
+  padding: 100px;
+  text-align: center;
+  color: white;
+}
+
+.btn {
+  border-radius: 5px;
+}

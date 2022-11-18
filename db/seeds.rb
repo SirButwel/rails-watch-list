@@ -4,4 +4,25 @@
 # Examples:
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+#   Character.create(name: "Luke", movie: movies.first
+rando = 2
+while rando <= 500
+
+  rando += 1
+
+  url = "https://tmdb.lewagon.com/movie/#{rando}"
+
+  movies = JSON.parse(URI.open(url).read)
+  p "Trying to add : #{movies['id']} to database..."
+  unless !movies['original_title'].nil? && !movies['overview'].nil? && !movies['vote_average'].nil? && movies['overview'] != ''
+    next
+  end
+
+  Movie.create!(
+    title: movies['title'],
+    overview: movies['overview'],
+    rating: movies['vote_average'],
+    poster_url: "https://image.tmdb.org/t/p/original/#{movies['poster_path']}"
+  )
+  p "Saving : #{movies['title']} to database..."
+end

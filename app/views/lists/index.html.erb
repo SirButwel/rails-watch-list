@@ -1,0 +1,15 @@
+<div class="banner">
+<h1>OverWatchList</h1>
+</div>
+
+<ul>
+  <% @lists.each do |list| %>
+  <li><%= link_to list.name, "/lists/#{list.id}" %></li>
+  <p><%= link_to "Delete list",
+    list_path(list),
+    data: {turbo_method: :delete, turbo_confirm: "Delete #{list.name}?"} %>
+  <% end %> </p>
+</ul>
+
+
+<p><%= link_to "New list", "/lists/new", class:"btn btn-primary" %></p>
