@@ -26,6 +26,12 @@ class ListsController < ApplicationController
     redirect_to lists_path, status: :see_other
   end
 
+  def search
+    `redirect_to lists_path and return if params[:input].blank?`
+    @results = List.where('lower(name) LIKE :search', search: params(:input).to_s)
+    @results_movie = Movie.where('lower(title) LIKE :search', search: params(:input).to_s)
+  end
+
   private
 
   def set_list

@@ -21,6 +21,10 @@ class BookmarksController < ApplicationController
     redirect_to list_path(@list), status: :see_other
   end
 
+  def search
+    @results_movie = Movie.where('lower(title) LIKE :search', search: params(:search).to_s)
+  end
+
   private
 
   def set_list

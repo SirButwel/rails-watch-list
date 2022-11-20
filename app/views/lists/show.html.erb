@@ -1,24 +1,27 @@
 
-<div class="banner">
+<nav class="navbar navbar-expand-lg bg-light"></nav>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @list.photo.key, height: 300, crop: :fill %>')">
 <h1><%= @list.name %></h1>
 </div>
 
 <%= link_to "Add a movie to list", new_list_bookmark_path(@list), class:"btn btn-primary" %>
+<%= link_to "back to overview", lists_path, class:"btn btn-primary" %>
 
 <div class="container">
   <ul>
     <% @list.bookmarks.each do |bookmark| %>
-    <%= image_tag(bookmark.movie.poster_url, class: "poster", height: "400", width: "300")%>
-    <li><%= bookmark.comment %></li>
-    <li><%= bookmark.movie.title %></li>
-    <li><%= bookmark.movie.rating %></li>
-    <li><%= bookmark.movie.overview %></li>
-    <%= link_to "Remove movie from list",
-          list_bookmark_path(@list, bookmark),
-          data: {turbo_method: :delete, turbo_confirm: "Delete #{bookmark.movie.title}?"}, class:"btn btn-primary"
-          %>
-    <% end %>
+    <div class="container">
+      <%= image_tag(bookmark.movie.poster_url, class: "poster", height: "400", width: "300")%>
+      <li><%= bookmark.comment %></li>
+      <li><%= bookmark.movie.title %></li>
+      <li><%= bookmark.movie.rating %></li>
+      <li><%= bookmark.movie.overview %></li>
+      <%= link_to "Remove movie from list",
+            list_bookmark_path(@list, bookmark),
+            data: {turbo_method: :delete, turbo_confirm: "Delete #{bookmark.movie.title}?"}, class:"btn btn-warning"
+            %>
+    </div>
+  <% end %>
+
   </ul>
 </div>
-
-<%= link_to "back to overview", lists_path, class:"btn btn-primary" %>
